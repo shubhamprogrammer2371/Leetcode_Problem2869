@@ -1,0 +1,31 @@
+int minOperations(int* nums, int numsSize, int k){
+    int *arr = calloc(51,sizeof(int)) , i , numcount = 0;
+    for( i = numsSize - 1 ; i > -1 ; i--)
+    {   
+        if((!(arr[nums[i]])) && (nums[i] <= k))
+        {
+            arr[nums[i]]++;
+            numcount++;
+        }
+        if(numcount == k)
+            break;
+    }
+    return numsSize - i;
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+int minOperations(int* nums, int numsSize, int k){
+    long cnt = 0, num = 0, binary = (1L << k) - 1;
+    for(int i = numsSize - 1 ; i > - 1 ; --i) 
+    {
+        ++cnt;
+        if(nums[i] <= k) 
+            num |= (1L << (nums[i] - 1));
+        if(num == binary)
+            break;
+    }
+    return (int)cnt;
+}
